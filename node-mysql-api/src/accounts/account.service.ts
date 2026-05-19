@@ -234,7 +234,7 @@ async function sendVerificationEmail(account: any, origin: any){
     await sendEmail({
         to: account.email,
         subject: 'Sign-up Verification API - Verify Email',
-        html: `<h4>Verify Email</h4>${message} <p> Thanks for registering! </p> ${message}`
+        html: `<h4>Verify Email</h4><p>Registered email: <strong>${account.email}</strong></p>${message} <p> Thanks for registering! </p> ${message}`
     });
 }
 
@@ -269,6 +269,6 @@ async function sendPasswordResetEmail(account: any, origin: any){
     await sendEmail({
         to: account.email,
         subject: 'Sign-up Verification API - Reset Password',
-        html: `<h4>Reset Password</h4>${message} <p> If you did not request a password reset, please ignore this email. </p> ${message}`
+        html: `<h4>Reset Password</h4><p>Registered email: <strong>${account.email}</strong></p>${message} <p> If you did not request a password reset, please ignore this email. </p> ${message}`
     })
 } 

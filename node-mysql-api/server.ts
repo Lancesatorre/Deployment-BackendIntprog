@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -5,6 +6,8 @@ import cors from 'cors';
 import errorHandler from './src/_middlerware/error-handler';
 import accountsController from './src/accounts/accounts.controller';
 import swaggerDocs from './src/_helpers/swagger';
+
+dotenv.config();
 
 const app = express();
 
@@ -35,5 +38,5 @@ app.use('/swagger', swaggerDocs);
 app.use(errorHandler);
 
 // start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
-app.listen(port, () => console.log('Server listening on http://localhost:4000/ '));
+const port = process.env.NODE_ENV === 'production' ? Number(process.env.PORT || 80) : 4000;
+app.listen(port, () => console.log(`Server listening on http://localhost:${port}/`));

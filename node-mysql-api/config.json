@@ -7,13 +7,7 @@
         "database": "node_mysql_api"
 },
     "secret": "SUPER_SECRET_KEY_REPLACE_ME_IN_PRODUCTION",
-    "emailFrom": "info@my-node-api.com",
-    "smtpOptions": {
-        "host": "smtp.ethereal.email",
-        "port": 587,
-        "auth": {
-            "user": "adolphus.cruickshank@ethereal.email",
-            "pass": "7XnKRnwb5QEqhQBegK"
-        }
-    }
+    "emailFrom": "lanceerrotas@gmail.com",
+    "resendFrom": "onboarding@resend.dev",
+    "resendApiKey": "re_aipbuvdW_GFUteTbSqqXvYHhvvT9iqMCd"
 }
