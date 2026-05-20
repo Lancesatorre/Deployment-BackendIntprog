@@ -25,8 +25,28 @@ app.use((req, res, next) => {
     next();
 });
 
-// allow cors requests from any origin and with credentials
-app.use(cors({ origin: (origin, callback) => callback(null, true), credentials: true }));
+const allowedOrigins = (process.env.CORS_ORIGIN || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+const corsOptions: cors.CorsOptions = {
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.length === 0) {
+            return callback(null, true);
+        }
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // api routes
 app.use('/accounts', accountsController);
