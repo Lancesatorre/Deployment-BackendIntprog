@@ -200,7 +200,11 @@ async function hash(password: any){
 }
 
 function generateJwtToken(account: any) {
-    return jwt.sign({sub: account.id, role: account.role}, config.secret, {expiresIn: '15m'});
+    const secret = process.env.JWT_SECRET || config.secret;
+    if (!secret) {
+        throw new Error('JWT secret is not configured. Set JWT_SECRET.');
+    }
+    return jwt.sign({sub: account.id, role: account.role}, secret, {expiresIn: '15m'});
 }
 
 function generateRefreshToken(account: any, ipAddress: any){
