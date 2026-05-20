@@ -1,0 +1,13 @@
+{
+    "database": {
+        "host": "localhost",
+        "port": 3306,
+        "user": "root",
+        "password": "your_database_password",
+        "database": "node_mysql_api"
+    },
+    "secret": "your_jwt_secret_token_here",
+    "emailFrom": "your_email@example.com",
+    "resendFrom": "",
+    "resendApiKey": "your_resend_api_key_here"
+}

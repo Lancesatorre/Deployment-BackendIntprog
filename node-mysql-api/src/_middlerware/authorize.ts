@@ -1,5 +1,5 @@
 import { expressjwt as jwt } from 'express-jwt';
-import config from '../../config.json';
+import config from '../config';
 import db from '../_helpers/db';
 
 // 📸 SCREENSHOT LABEL (CODE FILE): Authorization middleware starts below.

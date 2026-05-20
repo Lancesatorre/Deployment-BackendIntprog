@@ -1,4 +1,4 @@
-import config from '../../config.json';
+import config from '../config';
 import { Resend } from 'resend';
 
 export default async function sendEmail({ to, subject, html, from = process.env.RESEND_FROM || config.resendFrom || config.emailFrom }: any) {
