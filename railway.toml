@@ -1,0 +1,9 @@
+[build]
+builder = "NIXPACKS"
+buildCommand = "cd node-mysql-api && npm install && npm run build"
+
+[deploy]
+startCommand = "cd node-mysql-api && npm run start"
+healthcheckPath = "/swagger"
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
