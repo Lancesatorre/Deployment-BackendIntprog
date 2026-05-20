@@ -46,7 +46,7 @@ const corsOptions: cors.CorsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
+app.options('/*', cors(corsOptions));
 
 // api routes
 app.use('/accounts', accountsController);
