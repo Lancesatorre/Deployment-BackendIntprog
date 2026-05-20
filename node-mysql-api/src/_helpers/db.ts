@@ -23,14 +23,27 @@ async function initialize() {
 
     const allowCreate = process.env.DB_ALLOW_CREATE === 'true' || (!process.env.DB_ALLOW_CREATE && process.env.NODE_ENV !== 'production');
     if (allowCreate) {
-        const connection = await mysql.createConnection({ host, port, user, password });
+        const connection = await mysql.createConnection({ 
+            host, port, user, password,
+            ssl: { rejectUnauthorized: true } // Required for TiDB Cloud
+        });
         // Create DB if it doesn't exist (skip in managed production by default)
         await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
         await connection.end();
     }
 
     // Connect to DB
-    const sequelize = new Sequelize(database, user, password, { dialect: 'mysql', host, port, logging: false });
+    const sequelize = new Sequelize(database, user, password, { 
+        dialect: 'mysql', 
+        host, 
+        port, 
+        logging: false,
+        dialectOptions: {
+            ssl: {
+                rejectUnauthorized: true // Required for TiDB Cloud
+            }
+        }
+    });
 
     // Init models
     db.Account = accountModel(sequelize);
