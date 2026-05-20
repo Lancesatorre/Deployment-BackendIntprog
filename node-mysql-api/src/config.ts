@@ -5,11 +5,11 @@ import path from 'path';
 dotenv.config();
 
 // Load template so TypeScript is happy and we have default keys
-import template from '../../config.example.json';
+import template from '../config.example.json';
 
 let localConfig: any = {};
 try {
-    const configPath = path.join(__dirname, '../../config.json');
+    const configPath = path.join(__dirname, '../config.json');
     if (fs.existsSync(configPath)) {
         localConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
     }
